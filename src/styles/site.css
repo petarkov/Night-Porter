@@ -169,7 +169,8 @@ a:hover{text-decoration-thickness:2px}
 .ftr-in{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;font-size:14px;line-height:1.45}
 
 /* Root */
-.root{width:100%;padding-top:96px;padding-bottom:56px;display:flex;flex-direction:column;gap:32px}
+/* Spacing scales with viewport height so the whole page, footer included, fits one screen (down to ~640px tall). */
+.root{width:100%;padding-top:clamp(24px,6vh,96px);padding-bottom:clamp(24px,4vh,56px);display:flex;flex-direction:column;gap:clamp(16px,3vh,32px)}
 .root-h1{max-width:16ch}
 .seg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:16px;margin-top:8px}
 .seg-card{display:flex;flex-direction:column;gap:10px;padding:24px;background:var(--panel);border:var(--hairline);border-radius:var(--r-doc);color:var(--ink);text-decoration:none;transition:border-color 120ms ease}
@@ -196,6 +197,6 @@ a:hover{text-decoration-thickness:2px}
   .tile-gate{margin:21px 0 0}
   .tile-gate::before{left:6px;right:6px;top:-17px;bottom:auto;width:auto;height:1px}
   .book{padding:24px 16px}
-  .root{padding-top:32px;padding-bottom:48px}
+  .root{padding-top:24px;padding-bottom:24px}
   .dpage{padding-top:32px}
 }
