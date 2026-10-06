@@ -1,0 +1,28 @@
+{
+  "name": "night-desk-site",
+  "version": "1.0.0",
+  "description": "Night Desk marketing site",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "fonts": "./scripts/build-fonts.sh",
+    "check": "node scripts/check-budgets.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/petarkov/Night-Watch.git"
+  },
+  "bugs": {
+    "url": "https://github.com/petarkov/Night-Watch/issues"
+  },
+  "homepage": "https://github.com/petarkov/Night-Watch#readme",
+  "dependencies": {
+    "astro": "^7.3.6"
+  },
+  "devDependencies": {
+    "svgo": "^4.1.0"
+  },
+  "private": true,
+  "type": "module"
+}

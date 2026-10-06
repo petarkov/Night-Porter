@@ -1,0 +1,38 @@
+:root{
+/* Brand palette */
+--nd-paper:#F5F3EE;--nd-night-ink:#0F1726;--nd-night:#070B12;--nd-cream:#EFEAE1;
+--nd-signal-cyan:#37D6F0;--nd-signal-deep:#0B7489;--nd-lamp-amber:#E0A030;
+/* Neutrals (light / Paper) */
+--nd-bg:#F5F3EE;--nd-panel:#FFFFFF;--nd-raise:#EEEBE3;--nd-line:#DDD8CC;
+--nd-ink:#0F1726;--nd-ink-2:#4B5970;--nd-ink-3:#5E6A7E;
+/* Status (light) */
+--nd-live:#0B7489;
+--nd-waiting:#8A5A0C;--nd-waiting-soft:#F8ECD4;
+--nd-approved:#23764E;--nd-approved-soft:#DDEFE4;
+--nd-flagged:#A63E35;--nd-flagged-soft:#F6E1DE;
+/* Chart series (light) */
+--nd-chart-1:#0F1726;--nd-chart-2:#3D6A9E;--nd-chart-3:#7C8BA3;
+/* Semantic aliases */
+--surface-page:var(--nd-bg);--surface-card:var(--nd-panel);--surface-inset:var(--nd-raise);
+--border-hairline:var(--nd-line);--border-control:var(--nd-ink-3);--rule-strong:var(--nd-ink);
+--text-body:var(--nd-ink);--text-secondary:var(--nd-ink-2);--text-meta:var(--nd-ink-3);
+--text-link:var(--nd-signal-deep);--focus-ring:var(--nd-signal-deep);
+--accent-live:var(--nd-live);--accent-person:var(--nd-lamp-amber);
+--button-primary-bg:var(--nd-ink);--button-primary-fg:var(--nd-paper);
+}
+/* Dark theme: internal documents and the product's own dark mode only. Never client-facing pages. */
+[data-theme="night"]{
+--nd-bg:#070B12;--nd-panel:#0E1522;--nd-raise:#16202F;--nd-line:#223046;
+--nd-ink:#EFEAE1;--nd-ink-2:#9FB0C6;--nd-ink-3:#7C8EA6;
+--nd-live:#37D6F0;
+--nd-waiting:#E0A030;--nd-waiting-soft:#2E2412;
+--nd-approved:#3FBF7F;--nd-approved-soft:#12291E;
+--nd-flagged:#E8685C;--nd-flagged-soft:#33191A;
+--nd-chart-1:#EFEAE1;--nd-chart-2:#7FA6D6;--nd-chart-3:#56677F;
+--surface-page:var(--nd-bg);--surface-card:var(--nd-panel);--surface-inset:var(--nd-raise);
+--border-hairline:var(--nd-line);--border-control:var(--nd-ink-3);--rule-strong:var(--nd-ink);
+--text-body:var(--nd-ink);--text-secondary:var(--nd-ink-2);--text-meta:var(--nd-ink-3);
+--text-link:var(--nd-signal-cyan);--focus-ring:var(--nd-signal-cyan);
+--accent-live:var(--nd-live);
+--button-primary-bg:var(--nd-cream);--button-primary-fg:var(--nd-night);
+}

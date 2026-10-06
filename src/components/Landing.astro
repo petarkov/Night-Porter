@@ -1,0 +1,225 @@
+---
+import Base from '../layouts/Base.astro';
+import Logo from './Logo.astro';
+import { VARIANTS, CHIPS, DONT_DO, DATA_POINTS, type VariantKey } from '../data/variants';
+import { rich } from '../lib/rich';
+import site from '../../site.config.mjs';
+
+interface Props { variant: VariantKey }
+const v = VARIANTS[Astro.props.variant];
+---
+<Base title={v.title} description={v.desc} js>
+  <header class="hdr hdr-sticky" slot="header">
+    <div class="wrap hdr-in">
+      <a href="#top" class="hdr-logo" aria-label="Night Desk, back to top"><Logo width={120} first /></a>
+      <nav class="hdr-nav" aria-label="Page sections">
+        <div class="hdr-links">
+          <a href="#work">The work</a>
+          <a href="#data">Your data</a>
+          <a href="#about">About</a>
+        </div>
+        <div class="hdr-cta" id="hdr-cta"><a class="btn" href="#book">Book a call</a></div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="top" class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">{v.eyebrow}</p>
+          <h1 class="display">{v.h1}</h1>
+          <p class="body">{v.subline}</p>
+          <div class="hero-cta" id="hero-cta"><a class="btn" href="#book"><span>Book a <span class="n">20</span>-minute call</span></a></div>
+          <p class="body muted">No slides. We'll tell you honestly if we can help.</p>
+        </div>
+
+        <figure class="card-fig">
+          <div class="card">
+            <div class="card-top">
+              <span class="label">Example · synthetic data</span>
+              <span class="data muted">{v.card.drafted}</span>
+            </div>
+            <p class="card-title" set:html={rich(v.card.title)} />
+            <dl class="card-rows">
+              {v.card.rows.map((r) => (
+                <div class:list={['card-row', { opt: !r.star }]}>
+                  <dt>{r.label}</dt>
+                  <dd class="card-val" set:html={rich(r.value)} />
+                  <dd class="card-ev">
+                    {r.chip && <span class="chip">{r.chip}</span>}
+                    {r.flag && <span class="pill pill-flag"><span class="dot" aria-hidden="true" />Flagged: {r.flag}</span>}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+            <div class="note" role="note">
+              <p class="note-t">{v.card.noteTitle}</p>
+              <p class="note-b" set:html={rich(v.card.note)} />
+            </div>
+          </div>
+          <figcaption class="small muted">Example draft, synthetic data. We run the work; your team reviews and approves.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="work" class="sec">
+      <div class="wrap">
+        <h2 class="h2">{v.workH2}</h2>
+        <ol class="tiles">
+          {v.tiles.map(([verb, text], i) => (
+            <li class="tile">
+              <span class="data tile-n">0{i + 1}</span>
+              <span class="tile-v">{verb}</span>
+              <span class="tile-t">{text}</span>
+            </li>
+          ))}
+          <li class="tile tile-gate">
+            <span class="data tile-n">05</span>
+            <span class="tile-v">Approve.</span>
+            <span class="tile-t">{v.tile5}</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="how" class="sec">
+      <div class="wrap">
+        <h2 class="h2">Three steps. Stop after any of them.</h2>
+        <div class="steps">
+          {v.steps.map((s) => (
+            <div class="step">
+              <h3 class="h3">{s.name}</h3>
+              <span class="data muted">{s.dur}</span>
+              <p class="body" set:html={rich(s.line)} />
+              {s.chips && (
+                <ul class="chips">
+                  {CHIPS.map((c) => <li>{c}</li>)}
+                </ul>
+              )}
+            </div>
+          ))}
+        </div>
+        <p class="body fee">Fixed fee for each step, agreed in writing first.</p>
+      </div>
+    </section>
+
+    <section id="checks" class="sec">
+      <div class="wrap">
+        <h2 class="h2">Seven checks before you accept the build</h2>
+        <dl class="checks">
+          {v.checks.map(([c, line]) => (
+            <div>
+              <dt>{c}</dt>
+              <dd set:html={rich(line)} />
+            </div>
+          ))}
+        </dl>
+        <p class="small muted checks-note">We're new, so this standard stands in for client logos.</p>
+        <p class="body strong checks-fee">Part of the pilot fee is due only after the build passes. Still failing after one round of fixes? That part is waived.</p>
+      </div>
+    </section>
+
+    <section id="limits" class="sec">
+      <div class="wrap">
+        <h2 class="h2">What we don't do</h2>
+        <ul class="rules two">
+          {[v.dontDo, ...DONT_DO].map((line) => <li set:html={rich(line)} />)}
+        </ul>
+      </div>
+    </section>
+
+    <section id="book" class="sec sec-book">
+      <div class="wrap">
+        <div class="book">
+          <div>
+            <h2 class="h2">Tell us how the work runs today.</h2>
+            <p class="body book-sub"><span class="n">20</span> minutes. If we can't help, we'll say so.</p>
+          </div>
+
+          <form id="bk" class="bk" action={site.leadEndpoint} method="post">
+            <input type="hidden" name="variant" value={Astro.props.variant} />
+            <div class="bk-row">
+              <div class="field">
+                <label for="bk-name">Name</label>
+                <input id="bk-name" name="name" autocomplete="name" required aria-describedby="bk-name-e" />
+                <span class="err" id="bk-name-e"></span>
+              </div>
+              <div class="field">
+                <label for="bk-email">Work email</label>
+                <input id="bk-email" name="email" type="email" autocomplete="email" required aria-describedby="bk-email-e" />
+                <span class="err" id="bk-email-e"></span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="bk-company">Company</label>
+              <input id="bk-company" name="company" autocomplete="organization" required aria-describedby="bk-company-e" />
+              <span class="err" id="bk-company-e"></span>
+            </div>
+            <div class="field">
+              <label for="bk-q">{v.formQ}</label>
+              <select id="bk-q" name="size" required aria-describedby="bk-q-e">
+                <option value="">Choose one</option>
+                {v.formOpts.map((o) => <option>{o}</option>)}
+              </select>
+              <span class="err" id="bk-q-e"></span>
+            </div>
+            <div><button class="btn" type="submit">Pick a time</button></div>
+          </form>
+
+          <div id="bk-cal" class="bk-cal" hidden>
+            <div id="bk-cal-embed" class="bk-cal-embed"></div>
+            <p class="body muted">No time that works? Email <span class="ph">[contact email]</span>.</p>
+          </div>
+
+          <div id="bk-done" class="bk-done" role="status" hidden>
+            <p class="bk-done-t">You're booked. A calendar invite is on its way.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="data" class="sec sec-lg">
+      <div class="wrap">
+        <h2 class="h2">Your data</h2>
+        <ul class="rules narrow">
+          {DATA_POINTS.map((line) => <li set:html={rich(line)} />)}
+        </ul>
+        <p class="more"><a href="/data/">Full detail for your IT team</a></p>
+      </div>
+    </section>
+
+    <section id="about" class="sec sec-lg">
+      <div class="wrap">
+        <h2 class="h2">Who we are</h2>
+        <p class="body about-sub">Two founders. One of us is on every call.</p>
+        <div class="founders">
+          <div><span class="ph">[Founder 1, commercial: name, one line]</span></div>
+          <div><span class="ph">[Founder 2, technical: name, one line]</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="sec sec-lg">
+      <div class="wrap">
+        <h2 class="h2">Questions</h2>
+        <div class="faq">
+          {v.faq.map((f) => (
+            <div>
+              <h3 class="h3 faq-q">{f.q}</h3>
+              <p class="body" set:html={rich(f.a)} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script
+    slot="end"
+    is:inline
+    data-cal={site.calLink}
+    data-origin={site.calOrigin}
+    set:html={`(()=>{var d=document,$=i=>d.getElementById(i),c=$('hdr-cta'),s=new Set,o=new IntersectionObserver(e=>{e.forEach(x=>x.isIntersecting?s.add(x.target):s.delete(x.target));c.classList.toggle('on',!s.size)});o.observe($('hero-cta'));o.observe($('book'));var f=$('bk'),me=d.currentScript.dataset;f.noValidate=!0;f.onsubmit=async e=>{e.preventDefault();var ok=1;for(var el of f.elements){if(!el.id)continue;var v=el.value.trim(),m=v?el.type=='email'&&!/^[^@\\s]+@[^@\\s]+\\.[a-z]{2,}$/i.test(v)?'Enter a full email address.':'':'Required.';$(el.id+'-e').textContent=m;el.setAttribute('aria-invalid',!!m);if(m&&ok){ok=0;el.focus()}}if(!ok)return;var b=Object.fromEntries(new FormData(f));try{await fetch(f.action,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)})}catch(_){}f.hidden=!0;$('bk-cal').hidden=!1;if(!me.cal)return;var C=window.Cal=function(){C.q.push(arguments)};C.q=[];C.ns={};C.loaded=!0;d.head.appendChild(d.createElement('script')).src=me.origin.replace('//','//app.')+'/embed/embed.js';C('init',{origin:me.origin});C('inline',{elementOrSelector:'#bk-cal-embed',calLink:me.cal,config:{name:b.name,email:b.email}});C('on',{action:'bookingSuccessful',callback:()=>{$('bk-cal').hidden=!0;$('bk-done').hidden=!1}})}})()`}
+  />
+</Base>

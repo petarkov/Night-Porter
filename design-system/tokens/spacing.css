@@ -1,0 +1,9 @@
+:root{
+--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:24px;--space-6:32px;--space-7:48px;--space-8:64px;
+--section-gap:64px;
+--width-reading:760px;--width-page:1120px;--gutter-mobile:16px;--breakpoint:620px;
+--radius:4px;--radius-doc:6px;--radius-pill:999px;
+--hairline:1px solid var(--nd-line);
+--shadow:none;
+--focus-width:2px;--focus-offset:2px;
+}

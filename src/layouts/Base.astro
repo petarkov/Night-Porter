@@ -1,0 +1,68 @@
+---
+import '../styles/site.css';
+import Logo from '../components/Logo.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Wordmark in the simple header links home (true) or is plain (false, root page). */
+  homeLink?: boolean;
+  /** Landing pages only: marks <html> so the header CTA can start hidden without a flash. */
+  js?: boolean;
+}
+const { title, description, homeLink = true, js = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Night Desk" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="preload" href="/fonts/archivo-700-800.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/plex-sans-400-600.woff2" as="font" type="font/woff2" crossorigin />
+    {js && <script is:inline>document.documentElement.classList.add('js')</script>}
+  </head>
+  <body>
+    {
+      Astro.slots.has('header') ? (
+        <slot name="header" />
+      ) : (
+        <header class="hdr">
+          <div class="wrap hdr-in">
+            {homeLink ? (
+              <a href="/" class="hdr-logo" aria-label="Night Desk home">
+                <Logo width={120} first />
+              </a>
+            ) : (
+              <span class="hdr-logo">
+                <Logo width={120} first label="Night Desk" />
+              </span>
+            )}
+          </div>
+        </header>
+      )
+    }
+    <slot />
+    <footer class="ftr">
+      <div class="wrap ftr-in">
+        <Logo width={104} label="Night Desk" />
+        <span class="ph">[Legal entity name]</span>
+        <a href="/privacy/">Privacy</a>
+        <a href="/data/">Data</a>
+        <span class="ph">[contact email]</span>
+      </div>
+    </footer>
+    <slot name="end" />
+  </body>
+</html>

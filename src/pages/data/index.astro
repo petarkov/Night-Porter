@@ -1,0 +1,22 @@
+---
+import Base from '../../layouts/Base.astro';
+import { DATA_QA } from '../../data/variants';
+import { rich } from '../../lib/rich';
+---
+<Base
+  title="Night Desk | How We Handle Your Data"
+  description="Night Desk runs one repeatable job for US staffing and consulting firms. This page is for whoever checks our security."
+>
+  <main class="wrap dpage">
+    <h1 class="h1">How Night Desk handles your data</h1>
+    <p class="body">Night Desk runs one repeatable job for US staffing and consulting firms. This page is for whoever checks our security.</p>
+    <dl class="qa">
+      {DATA_QA.map(([q, a]) => (
+        <div>
+          <dt>{q}</dt>
+          <dd set:html={rich(a)} />
+        </div>
+      ))}
+    </dl>
+  </main>
+</Base>

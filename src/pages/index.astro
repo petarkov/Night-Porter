@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+
+const arrow = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
+const cards = [
+  { href: '/staffing/', label: 'Staffing firms', text: 'Submission prep: from approved req to client-ready package' },
+  { href: '/proposals/', label: 'Consulting and engineering firms', text: 'Proposal drafts: from RFP to first draft' },
+];
+---
+<Base
+  title="Night Desk | Managed AI Operations for Services Firms"
+  description="Night Desk takes one repeatable job off US staffing and consulting firms and runs it across your tools, with a person approving anything that leaves."
+  homeLink={false}
+>
+  <main class="wrap root">
+    <h1 class="display root-h1">We run the work between your systems.</h1>
+    <p class="body">One repeatable job, taken off your team, with a person approving anything that leaves.</p>
+    <div class="seg">
+      {cards.map((c) => (
+        <a class="seg-card" href={c.href}>
+          <span class="label">{c.label}</span>
+          <span class="seg-row">
+            <span class="seg-t">{c.text}</span>
+            <Fragment set:html={arrow} />
+          </span>
+        </a>
+      ))}
+    </div>
+    <p><a href="/data/">How we handle your data</a></p>
+  </main>
+</Base>
