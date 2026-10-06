@@ -36,7 +36,7 @@ Node 22 or newer. `/api/lead` only exists on Cloudflare; locally the form still 
 One-time setup in the Cloudflare dashboard:
 
 1. Workers & Pages > Create > Pages > Connect to Git, pick this repo and the production branch.
-2. Build command `npm run build`, output directory `dist`. Set `NODE_VERSION=22` under environment variables.
+2. Build command `npm run build`, output directory `dist`. Set `NODE_VERSION=22.16.0` under environment variables (Astro needs 22.12 or newer; `.nvmrc` pins the same).
 3. Every push to the production branch deploys; other branches get preview URLs.
 4. When the project URL is known, update `siteUrl` in `site.config.mjs` (it drives canonical URLs, Open Graph, sitemap and robots).
 
