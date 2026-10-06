@@ -47,7 +47,8 @@ One-time setup in the Cloudflare dashboard:
 
 ## Open items
 
-- Booking position on desktop (brief check: under 50% of page height).
+- Booking position: kept as built (checks in four columns, booking at about 57% of page height at 1440px). Decided, not a defect.
+- Cal.com link: intentionally empty for now. After a valid submit, visitors see only the email fallback line.
 - Word count: both variants are over the 650 target. Copy is not cut without sign-off.
 - `/privacy/` link goes to the 404 page until privacy text is supplied.
 - Domain, contact email, legal entity, founders, coverage window and the /data answers stay bracketed.
