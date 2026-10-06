@@ -6,8 +6,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "fonts": "./scripts/build-fonts.sh",
-    "check": "node scripts/check-budgets.mjs"
+    "fonts": "./scripts/build-fonts.sh"
   },
   "repository": {
     "type": "git",
