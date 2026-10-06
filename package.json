@@ -10,12 +10,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/petarkov/Night-Watch.git"
+    "url": "git+https://github.com/petarkov/Night-Porter.git"
   },
   "bugs": {
-    "url": "https://github.com/petarkov/Night-Watch/issues"
+    "url": "https://github.com/petarkov/Night-Porter/issues"
   },
-  "homepage": "https://github.com/petarkov/Night-Watch#readme",
+  "homepage": "https://github.com/petarkov/Night-Porter#readme",
   "dependencies": {
     "astro": "^7.3.6"
   },
