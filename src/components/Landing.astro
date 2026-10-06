@@ -7,11 +7,16 @@ import site from '../../site.config.mjs';
 
 interface Props { variant: VariantKey }
 const v = VARIANTS[Astro.props.variant];
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: v.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
 ---
-<Base title={v.title} description={v.desc} js>
+<Base title={v.title} description={v.desc} js schema={[faqSchema]}>
   <header class="hdr hdr-sticky" slot="header">
     <div class="wrap hdr-in">
-      <a href="#top" class="hdr-logo" aria-label="Night Desk, back to top"><Logo width={120} first /></a>
+      <a href="#top" class="hdr-logo" aria-label="Night Porter, back to top"><Logo width={132} first /></a>
       <nav class="hdr-nav" aria-label="Page sections">
         <div class="hdr-links">
           <a href="#work">The work</a>

@@ -1,6 +1,6 @@
-# Night Desk site
+# Night Porter site
 
-Static marketing site for Night Desk. Astro, no UI framework, one CSS file, under 2 KB of JS (landing pages only).
+Static marketing site for Night Porter. Astro, no UI framework, one CSS file, under 2 KB of JS (landing pages only).
 
 | Route | Page |
 |---|---|
@@ -38,7 +38,7 @@ One-time setup in the Cloudflare dashboard:
 1. Workers & Pages > Create > Pages > Connect to Git, pick this repo and the production branch.
 2. Build command `npm run build`, output directory `dist`. Set `NODE_VERSION=22.16.0` under environment variables (Astro needs 22.12 or newer; `.nvmrc` pins the same).
 3. Every push to the production branch deploys; other branches get preview URLs.
-4. When the project URL is known, update `siteUrl` in `site.config.mjs` (it drives canonical URLs, Open Graph, sitemap and robots).
+4. `siteUrl` in `site.config.mjs` is set to the planned domain `https://nightporterhq.com` (not bought yet). It is the only place the domain lives: canonical URLs, Open Graph, sitemap, robots and JSON-LD all read it.
 
 ### Booking form
 
@@ -51,4 +51,5 @@ One-time setup in the Cloudflare dashboard:
 - Cal.com link: intentionally empty for now. After a valid submit, visitors see only the email fallback line.
 - Word count: both variants are over the 650 target. Copy is not cut without sign-off.
 - `/privacy/` link goes to the 404 page until privacy text is supplied.
-- Domain, contact email, legal entity, founders, coverage window and the /data answers stay bracketed.
+- Contact email, founders, coverage window and the /data answers stay bracketed. The footer reads `© 2026 Night Porter` until a legal entity exists.
+- Logo files: `design-system/assets/` holds the supplied Night Porter SVGs and wordmark PNGs. `src/components/Logo.astro` inlines an SVGO-optimized copy of `nightporter-wordmark-paper.svg`.

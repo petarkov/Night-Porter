@@ -1,4 +1,4 @@
-# Night Desk Landing Page Design Brief v2
+# Night Porter Landing Page Design Brief v2
 
 Sep 30, 2026 · @Big boss
 
@@ -30,7 +30,7 @@ The review found the page tells its three-step flow four times and says "a perso
 
 ## Brand and visual rules
 
-These are unchanged from v1. Use the Night Desk design system.
+These are unchanged from v1. Use the Night Porter design system.
 
 | Element | Rule |
 | --- | --- |
@@ -186,7 +186,7 @@ Two founders. One of us is on every call.
 
 **Section 9, H2:** Questions
 
-**What does Night Desk do?** Night Desk takes one repeatable job off a US staffing or consulting firm's team and runs it across the tools the firm already uses. Every draft carries its sources, and a person approves anything that leaves.
+**What does Night Porter do?** Night Porter takes one repeatable job off a US staffing or consulting firm's team and runs it across the tools the firm already uses. Every draft carries its sources, and a person approves anything that leaves.
 
 **What happens when it gets something wrong?** It stops and asks. A named person on your team gets the draft with both sources attached, and their correction becomes a new test case.
 
@@ -196,12 +196,12 @@ Two founders. One of us is on every call.
 
 ### /staffing
 
-- **Meta title:** Night Desk | Submission Prep for US Staffing Firms
+- **Meta title:** Night Porter | Submission Prep for US Staffing Firms
 - **Meta description:** We take submission prep off your recruiters: CV, notes and transcripts turned into client-ready packages, tested on 30 of your past submissions.
 - **Eyebrow:** FOR US STAFFING FIRMS
 - **H1:** Submission prep, off your recruiters' desks.
 - **Subline:** We draft every package in your client's format. A recruiter approves it before anything goes out.
-- **Section 2, H2:** How a submission moves through Night Desk
+- **Section 2, H2:** How a submission moves through Night Porter
 - **Tiles:**
   1. **Collect.** The req, CV, notes and transcripts.
   2. **Extract.** Every fact, linked to its source.
@@ -216,12 +216,12 @@ Two founders. One of us is on every call.
 
 ### /proposals
 
-- **Meta title:** Night Desk | Proposal Prep for Engineering and Consulting
+- **Meta title:** Night Porter | Proposal Prep for Engineering and Consulting
 - **Meta description:** We take first drafts off your team: RFP to proposal draft built from your past proposals, resumes and project sheets, with every claim sourced.
 - **Eyebrow:** FOR US CONSULTING AND ENGINEERING FIRMS
 - **H1:** First proposal drafts, off your team's desks.
 - **Subline:** We draft from your past proposals, resumes and project sheets, and flag every gap. We never submit anything.
-- **Section 2, H2:** How an RFP moves through Night Desk
+- **Section 2, H2:** How an RFP moves through Night Porter
 - **Tiles:**
   1. **Intake.** The RFP, its requirements and deadlines.
   2. **Match.** Past projects, resumes and sections, each sourced.
@@ -236,8 +236,8 @@ Two founders. One of us is on every call.
 
 ### Root page `/`
 
-- **Meta title:** Night Desk | Managed AI Operations for Services Firms
-- **Meta description:** Night Desk takes one repeatable job off US staffing and consulting firms and runs it across your tools, with a person approving anything that leaves.
+- **Meta title:** Night Porter | Managed AI Operations for Services Firms
+- **Meta description:** Night Porter takes one repeatable job off US staffing and consulting firms and runs it across your tools, with a person approving anything that leaves.
 - **H1:** We run the work between your systems.
 - **Line:** One repeatable job, taken off your team, with a person approving anything that leaves.
 - **Card 1:** STAFFING FIRMS · Submission prep: from approved req to client-ready package → /staffing
@@ -246,9 +246,9 @@ Two founders. One of us is on every call.
 
 ### Data page `/data`
 
-- **Meta title:** Night Desk | How We Handle Your Data
-- **H1:** How Night Desk handles your data
-- **Intro:** Night Desk runs one repeatable job for US staffing and consulting firms. This page is for whoever checks our security.
+- **Meta title:** Night Porter | How We Handle Your Data
+- **H1:** How Night Porter handles your data
+- **Intro:** Night Porter runs one repeatable job for US staffing and consulting firms. This page is for whoever checks our security.
 - **What do you read?** \[Systems by name, confirmed per engagement in the statement of work\]
 - **What do you write?** Only items a person on your team has approved, and only to fields named in the statement of work.
 - **Whose credentials?** Scoped to the workflow, held in your accounts wherever the vendor allows, and revocable by you without contacting us.
@@ -294,11 +294,11 @@ Two founders. One of us is on every call.
 Paste this, then paste the **What changed**, **Layout** and **Final copy** sections of this brief underneath it.
 
 ```
-Update the Night Desk prototype to brief v2, pasted below. v2 replaces v1 entirely. The goal is a page that reads faster: about half the words, the booking form higher up, and each message said once.
+Update the Night Porter prototype to brief v2, pasted below. v2 replaces v1 entirely. The goal is a page that reads faster: about half the words, the booking form higher up, and each message said once.
 
 Apply every change in "What changed and why". Rebuild /staffing and /proposals in the section order in the Layout table, remove the buttons from both example cards, add the caption under each card, and show only the starred rows on mobile. Update the root page and add the new /data page.
 
-Use the Final copy word for word and delete any v1 copy not in it. Keep every bracketed placeholder as written. Keep all brand rules from the Night Desk design system and the rules table in this brief. The sticky header is approved.
+Use the Final copy word for word and delete any v1 copy not in it. Keep every bracketed placeholder as written. Keep all brand rules from the Night Porter design system and the rules table in this brief. The sticky header is approved.
 
 Do not add sections, imagery, buttons in the cards, links between the two variants, accordions, vendor names, em dashes, exclamation marks or title case.
 

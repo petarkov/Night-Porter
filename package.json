@@ -1,7 +1,7 @@
 {
-  "name": "night-desk-site",
+  "name": "night-porter-site",
   "version": "1.0.0",
-  "description": "Night Desk marketing site",
+  "description": "Night Porter marketing site",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",

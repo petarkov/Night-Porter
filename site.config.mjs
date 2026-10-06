@@ -1,7 +1,7 @@
 // Every deploy-specific value lives here. Change these, rebuild, redeploy.
 export default {
-  // Final domain is not cleared yet. Swap this one value when it is.
-  siteUrl: 'https://night-desk.pages.dev',
+  // Planned domain, not bought yet. The only place the domain lives: canonical, og, sitemap, robots and schema all read it.
+  siteUrl: 'https://nightporterhq.com',
   // Cal.com booking link, e.g. 'your-name/20min'. Empty = form posts the lead, then shows the email fallback only.
   calLink: '',
   calOrigin: 'https://cal.com',

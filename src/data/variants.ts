@@ -38,8 +38,8 @@ export interface Variant {
 
 const SHARED_FAQ = [
   {
-    q: 'What does Night Desk do?',
-    a: "Night Desk takes one repeatable job off a US staffing or consulting firm's team and runs it across the tools the firm already uses. Every draft carries its sources, and a person approves anything that leaves.",
+    q: 'What does Night Porter do?',
+    a: "Night Porter takes one repeatable job off a US staffing or consulting firm's team and runs it across the tools the firm already uses. Every draft carries its sources, and a person approves anything that leaves.",
   },
   {
     q: 'What happens when it gets something wrong?',
@@ -81,12 +81,12 @@ export const DATA_POINTS = [
 
 export const VARIANTS: Record<VariantKey, Variant> = {
   staffing: {
-    title: 'Night Desk | Submission Prep for US Staffing Firms',
+    title: 'Night Porter | Submission Prep for US Staffing Firms',
     desc: 'We take submission prep off your recruiters: CV, notes and transcripts turned into client-ready packages, tested on 30 of your past submissions.',
     eyebrow: 'For US staffing firms',
     h1: "Submission prep, off your recruiters' desks.",
     subline: "We draft every package in your client's format. A recruiter approves it before anything goes out.",
-    workH2: 'How a submission moves through Night Desk',
+    workH2: 'How a submission moves through Night Porter',
     tiles: [
       ['Collect.', 'The req, CV, notes and transcripts.'],
       ['Extract.', 'Every fact, linked to its source.'],
@@ -123,12 +123,12 @@ export const VARIANTS: Record<VariantKey, Variant> = {
     },
   },
   proposals: {
-    title: 'Night Desk | Proposal Prep for Engineering and Consulting',
+    title: 'Night Porter | Proposal Prep for Engineering and Consulting',
     desc: 'We take first drafts off your team: RFP to proposal draft built from your past proposals, resumes and project sheets, with every claim sourced.',
     eyebrow: 'For US consulting and engineering firms',
     h1: "First proposal drafts, off your team's desks.",
     subline: 'We draft from your past proposals, resumes and project sheets, and flag every gap. We never submit anything.',
-    workH2: 'How an RFP moves through Night Desk',
+    workH2: 'How an RFP moves through Night Porter',
     tiles: [
       ['Intake.', 'The RFP, its requirements and deadlines.'],
       ['Match.', 'Past projects, resumes and sections, each sourced.'],

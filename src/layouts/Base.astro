@@ -9,9 +9,12 @@ interface Props {
   homeLink?: boolean;
   /** Landing pages only: marks <html> so the header CTA can start hidden without a flash. */
   js?: boolean;
+  /** JSON-LD objects for this page. */
+  schema?: object[];
 }
-const { title, description, homeLink = true, js = false } = Astro.props;
+const { title, description, homeLink = true, js = false, schema = [] } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL('/nightporter-og-image.png', Astro.site).href;
 ---
 <!doctype html>
 <html lang="en">
@@ -22,13 +25,23 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/nightporter-monogram-small.svg" type="image/svg+xml" />
+    <link rel="icon" href="/nightporter-monogram-32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/nightporter-monogram-180.png" />
+    <meta name="theme-color" content="#F5F3EE" />
+    <meta property="og:site_name" content="Night Porter" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Night Desk" />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Night Porter" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
+    {schema.map((o) => <script type="application/ld+json" set:html={JSON.stringify(o)} />)}
     <link rel="preload" href="/fonts/archivo-700-800.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/plex-sans-400-600.woff2" as="font" type="font/woff2" crossorigin />
     {js && <script is:inline>document.documentElement.classList.add('js')</script>}
@@ -41,12 +54,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
         <header class="hdr">
           <div class="wrap hdr-in">
             {homeLink ? (
-              <a href="/" class="hdr-logo" aria-label="Night Desk home">
-                <Logo width={120} first />
+              <a href="/" class="hdr-logo" aria-label="Night Porter home">
+                <Logo width={132} first />
               </a>
             ) : (
               <span class="hdr-logo">
-                <Logo width={120} first label="Night Desk" />
+                <Logo width={132} first label="Night Porter" />
               </span>
             )}
           </div>
@@ -56,8 +69,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <slot />
     <footer class="ftr">
       <div class="wrap ftr-in">
-        <Logo width={104} label="Night Desk" />
-        <span class="ph">[Legal entity name]</span>
+        <Logo width={114} label="Night Porter" />
+        <span>© 2026 Night Porter</span>
         <a href="/privacy/">Privacy</a>
         <a href="/data/">Data</a>
         <span class="ph">[contact email]</span>

@@ -6,11 +6,22 @@ const cards = [
   { href: '/staffing/', label: 'Staffing firms', text: 'Submission prep: from approved req to client-ready package' },
   { href: '/proposals/', label: 'Consulting and engineering firms', text: 'Proposal drafts: from RFP to first draft' },
 ];
+const org = {
+  '@context': 'https://schema.org',
+  '@type': ['Organization', 'ProfessionalService'],
+  name: 'Night Porter',
+  url: Astro.site!.href,
+  logo: new URL('/nightporter-monogram-512.png', Astro.site).href,
+  description:
+    'Night Porter takes over one repeatable work package for US staffing and consulting firms and runs it across the tools they already use, with sources attached and a person approving anything that leaves.',
+  areaServed: 'United States',
+};
 ---
 <Base
-  title="Night Desk | Managed AI Operations for Services Firms"
-  description="Night Desk takes one repeatable job off US staffing and consulting firms and runs it across your tools, with a person approving anything that leaves."
+  title="Night Porter | Managed AI Operations for Services Firms"
+  description="Night Porter takes one repeatable job off US staffing and consulting firms and runs it across your tools, with a person approving anything that leaves."
   homeLink={false}
+  schema={[org]}
 >
   <main class="wrap root">
     <h1 class="display root-h1">We run the work between your systems.</h1>

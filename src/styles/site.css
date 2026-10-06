@@ -1,4 +1,4 @@
-/* Night Desk site. Built from design-system/tokens/*.css, trimmed to what the pages use.
+/* Night Porter site. Built from design-system/tokens/*.css, trimmed to what the pages use.
    One breakpoint: max-width 619px. Paper ground everywhere, also in device dark mode. */
 
 /* Fonts: Archivo and Plex Sans are variable files clamped to the weights in use (see scripts/build-fonts.sh). */
