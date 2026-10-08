@@ -1,6 +1,8 @@
 // All landing copy. Final, word for word from brief-v2.md. Do not edit without a brief change.
 // Bracketed text is a placeholder and must stay bracketed until the real value is supplied.
 
+import site from '../../site.config.mjs';
+
 export type VariantKey = 'staffing' | 'proposals';
 
 interface CardRow {
@@ -36,15 +38,23 @@ export interface Variant {
   };
 }
 
-const SHARED_FAQ = [
-  {
-    q: 'What does Night Porter do?',
-    a: "Night Porter takes one repeatable job off a US staffing or consulting firm's team and runs it across the tools the firm already uses. Every draft carries its sources, and a person approves anything that leaves.",
-  },
-  {
-    q: 'What happens when it gets something wrong?',
-    a: 'It stops and asks. A named person on your team gets the draft with both sources attached, and their correction becomes a new test case.',
-  },
+// [[Double brackets]] mark a value not confirmed yet. Never deploy a page that still shows one.
+
+const WHAT_WE_DO = (a: string) => ({ q: 'What does Night Porter do?', a });
+
+const WRONG_FAQ = {
+  q: 'What happens when it gets something wrong?',
+  a: 'It stops and asks. A named person on your team gets the draft with both sources attached, and their correction becomes a new test case.',
+};
+
+const COST_FAQ = {
+  q: 'What does it cost?',
+  a: "Each step has a fixed fee, agreed in writing before it starts. The assessment tells you whether the pilot pays back. If it doesn't, we'll tell you not to buy it.",
+};
+
+export const FOUNDERS: [name: string, line: string][] = [
+  ['Petar Kovacevic', 'commercial. Runs your assessment and stays your contact from the first call to the monthly report.'],
+  ['Leonardo Djinic', 'technical. Builds and tests every workflow, and is the person your IT team talks to.'],
 ];
 
 const STEPS = (word: string) => [
@@ -69,7 +79,7 @@ export const DONT_DO = [
   'Write to your systems outside the fields we agree.',
   'Promise perfect accuracy. We publish the measured rate.',
   'Automate every department. One job first.',
-  'Offer 24/7 support. [Coverage window]',
+  'Offer 24/7 support. The work runs overnight; we answer weekdays, [[9 a.m. to 6 p.m. ET]]. Anything that breaks outside those hours falls back to your manual process until morning.',
 ];
 
 export const DATA_POINTS = [
@@ -98,12 +108,16 @@ export const VARIANTS: Record<VariantKey, Variant> = {
     formQ: 'How many recruiters on your team?',
     formOpts: ['Under 10', '10 to 20', '20 to 50', 'More than 50'],
     faq: [
-      ...SHARED_FAQ,
+      WHAT_WE_DO(
+        "Night Porter takes submission prep off your recruiters. We pull the req, CV, notes and transcripts together into a package in your client's format. Every fact carries its source, and a recruiter approves it before it goes out.",
+      ),
+      WRONG_FAQ,
       { q: 'Does this replace our recruiters?', a: 'No. It takes the formatting and assembly off them. Every candidate decision stays with your recruiters.' },
       {
         q: 'Our ATS already has AI. Why would we need this?',
         a: "It might cover it. Show us on your last five submissions. Built-in AI works inside the ATS; submission prep also needs your files, transcripts and client templates. If your ATS covers it, we'll say so.",
       },
+      COST_FAQ,
     ],
     steps: STEPS('submissions'),
     checks: CHECKS('submissions'),
@@ -140,7 +154,10 @@ export const VARIANTS: Record<VariantKey, Variant> = {
     formQ: 'How many proposals do you send a month?',
     formOpts: ['Under 5', '5 to 10', '10 to 20', 'More than 20'],
     faq: [
-      ...SHARED_FAQ,
+      WHAT_WE_DO(
+        'Night Porter takes first proposal drafts off your team. We read the RFP, match your past projects and resumes to each requirement, and draft in your house format. Every claim carries its source, and we never submit anything.',
+      ),
+      WRONG_FAQ,
       {
         q: 'We already use proposal software. How is this different?',
         a: 'It stores your content. We do the assembly on top: reading the RFP, matching, drafting and flagging gaps. If your tools already cover that, the assessment will tell you.',
@@ -149,6 +166,7 @@ export const VARIANTS: Record<VariantKey, Variant> = {
         q: 'Could it invent project experience?',
         a: "No. Every claim links to the file it came from. If your records don't support a requirement, the draft flags the gap instead of filling it.",
       },
+      COST_FAQ,
     ],
     steps: STEPS('proposals'),
     checks: CHECKS('proposals'),
@@ -168,18 +186,19 @@ export const VARIANTS: Record<VariantKey, Variant> = {
   },
 };
 
-export const DATA_QA: [q: string, a: string][] = [
-  ['What do you read?', '[Systems by name, confirmed per engagement in the statement of work]'],
+/** [question, answer, optional link: when set, the whole answer is that link] */
+export const DATA_QA: [q: string, a: string, href?: string][] = [
+  ['What do you read?', 'Only the systems named in your statement of work, such as [[your ATS, document storage, shared inbox]]. Access is scoped to the folders and records the job needs.'],
   ['What do you write?', 'Only items a person on your team has approved, and only to fields named in the statement of work.'],
   ['Whose credentials?', 'Scoped to the workflow, held in your accounts wherever the vendor allows, and revocable by you without contacting us.'],
-  ['Do AI providers train on our data?', '[Named providers and their training and retention terms]'],
-  ['Where is data hosted?', '[Hosting provider and region]'],
-  ['Is it encrypted?', '[In transit and at rest: confirm]'],
-  ['Is there an audit log?', '[What is logged, and who can see it]'],
-  ['Is our data separate from other clients?', '[Confirm with the technical founder in writing]'],
-  ['How long do you keep it?', '[Retention schedule and deletion window]'],
-  ['Where is your team?', '[International transfer line]'],
+  ['Do AI providers train on our data?', 'We use [[provider]] under commercial terms that do not use your inputs or outputs to train models. They retain data for [[X days]] for abuse monitoring, then delete it.'],
+  ['Where is data hosted?', '[[Hosting provider]], [[region]]. Your data stays in the US unless your statement of work says otherwise.'],
+  ['Is it encrypted?', 'Yes. [[TLS 1.2 or higher]] in transit and [[AES-256]] at rest.'],
+  ['Is there an audit log?', "Every read, draft, flag and approval is logged with a timestamp and who or what did it. You can request your firm's log at any time."],
+  ['Is our data separate from other clients?', "Yes. Each client runs in its own [[workspace / storage]] with its own credentials. One client's files are never used to draft for another."],
+  ['How long do you keep it?', 'Working files for [[30]] days after each job closes. When an engagement ends, we delete everything within [[30]] days and confirm it in writing.'],
+  ['Where is your team?', 'Our team works from the US and Europe. Where your data is accessed outside the US, that access is covered by our data-processing terms.'],
   ['Do you hold certifications?', "Not yet. We don't hold SOC 2 or ISO 27001. We'll send our written security practice on request."],
-  ['Data-processing terms:', '[Link]'],
-  ['Security contact:', '[Email]'],
+  ['Data-processing terms:', 'Request our DPA', `mailto:${site.securityEmail}?subject=DPA%20request`],
+  ['Security contact:', site.securityEmail, `mailto:${site.securityEmail}`],
 ];

@@ -7,4 +7,7 @@ export default {
   calOrigin: 'https://cal.com',
   // Same-origin Cloudflare Pages Function (functions/api/lead.js).
   leadEndpoint: '/api/lead',
+  // Public addresses shown on the site (footer, booking fallback, /data, /privacy).
+  contactEmail: 'hello@nightporterhq.com',
+  securityEmail: 'security@nightporterhq.com',
 };

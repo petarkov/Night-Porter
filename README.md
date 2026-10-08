@@ -23,11 +23,12 @@ Node 22 or newer. `/api/lead` only exists on Cloudflare; locally the form still 
 ## Where things live
 
 - `site.config.mjs`: every deploy value in one place (site URL / domain, Cal.com link, lead endpoint).
-- `src/data/variants.ts`: all copy, word for word from `design-system/brief-v2.md`. Bracketed text is a placeholder and stays bracketed until real values arrive.
+- `src/data/variants.ts`: all landing and /data copy (brief v2 plus the Oct 2026 copy update). `[[Double-bracketed]]` text is a value Petar has not confirmed. Never deploy a page that still shows one.
+- `src/pages/privacy/index.astro`: privacy page, same layout as /data.
 - `src/components/Landing.astro`: one component for both variants. `src/pages/staffing` and `src/pages/proposals` just pass the variant.
 - `src/layouts/Base.astro`: head, simple header, footer.
 - `src/styles/site.css`: the only stylesheet, built from `design-system/tokens/`. Inlined into each page at build.
-- `src/lib/rich.ts`: wraps numbers in IBM Plex Mono and renders `[placeholders]`, at build time.
+- `src/lib/rich.ts`: wraps numbers in IBM Plex Mono and renders `[placeholders]` and `[[unconfirmed values]]` as placeholder tags, at build time.
 - `functions/api/lead.js`: Cloudflare Pages Function that receives the booking form.
 - `scripts/build-fonts.sh`: regenerates `public/fonts/` from `design-system/fonts/` (needs `pip install fonttools brotli`). Archivo and Plex Sans are variable fonts clamped to the weights used, subset to Latin.
 
@@ -50,6 +51,6 @@ One-time setup in the Cloudflare dashboard:
 - Booking position: kept as built (checks in four columns, booking at about 57% of page height at 1440px). Decided, not a defect.
 - Cal.com link: intentionally empty for now. After a valid submit, visitors see only the email fallback line.
 - Word count: both variants are over the 650 target. Copy is not cut without sign-off.
-- `/privacy/` link goes to the 404 page until privacy text is supplied.
-- Contact email, founders, coverage window and the /data answers stay bracketed. The footer reads `© 2026 Night Porter` until a legal entity exists.
+- Unconfirmed values, still in `[[double brackets]]`: the support hours in the coverage line (/staffing, /proposals) and the AI provider, retention days, hosting, region, encryption, workspace and retention windows on /data. Before deploying, check that `dist/` has no `[[`.
+- The footer reads `© 2026 Night Porter` until a legal entity exists.
 - Logo files: `design-system/assets/` holds the supplied Night Porter SVGs and wordmark PNGs. `src/components/Logo.astro` inlines an SVGO-optimized copy of `nightporter-wordmark-paper.svg`.

@@ -5,16 +5,16 @@ import { rich } from '../../lib/rich';
 ---
 <Base
   title="Night Porter | How We Handle Your Data"
-  description="Night Porter runs one repeatable job for US staffing and consulting firms. This page is for whoever checks our security."
+  description="What Night Porter reads, writes and keeps, where it's hosted, and how to revoke our access. Written for your IT and security team."
 >
   <main class="wrap dpage">
     <h1 class="h1">How Night Porter handles your data</h1>
     <p class="body">Night Porter runs one repeatable job for US staffing and consulting firms. This page is for whoever checks our security.</p>
     <dl class="qa">
-      {DATA_QA.map(([q, a]) => (
+      {DATA_QA.map(([q, a, href]) => (
         <div>
           <dt>{q}</dt>
-          <dd set:html={rich(a)} />
+          {href ? <dd><a href={href}>{a}</a></dd> : <dd set:html={rich(a)} />}
         </div>
       ))}
     </dl>

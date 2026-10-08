@@ -172,8 +172,9 @@ a:hover{text-decoration-thickness:2px}
 /* Root page scales its vertical spacing with viewport height so the footer stays in view on laptop screens. */
 .root{width:100%;padding-top:clamp(32px,10vh,96px);padding-bottom:clamp(24px,6vh,56px);display:flex;flex-direction:column;gap:clamp(20px,3.5vh,32px)}
 .root-h1{max-width:16ch}
+.root-sub{display:flex;flex-direction:column;gap:8px}
 /* Short desktop screens: let the root H1 run to two lines so the footer stays in view. */
-@media (min-width:620px) and (max-height:760px){.root-h1{max-width:24ch}}
+@media (min-width:620px) and (max-height:820px){.root-h1{max-width:24ch}.root{padding-top:clamp(24px,6vh,96px);padding-bottom:clamp(20px,4vh,56px);gap:clamp(16px,2.5vh,32px)}}
 .seg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:16px;margin-top:8px}
 .seg-card{display:flex;flex-direction:column;gap:10px;padding:24px;background:var(--panel);border:var(--hairline);border-radius:var(--r-doc);color:var(--ink);text-decoration:none;transition:border-color 120ms ease}
 .seg-card:hover{border-color:var(--ink-3)}
@@ -184,7 +185,10 @@ a:hover{text-decoration-thickness:2px}
 /* Data page */
 .dpage{width:100%;padding-top:72px;padding-bottom:64px;display:flex;flex-direction:column;gap:20px}
 .qa{margin-top:20px}
-.qa div{padding:18px 0;border-top:var(--hairline);display:flex;flex-direction:column;gap:6px}
+.qa div,.qa section{padding:18px 0;border-top:var(--hairline);display:flex;flex-direction:column;gap:6px}
+/* /privacy/: same hairline sections as /data, one column for long-form reading */
+.qa.one{grid-template-columns:1fr;max-width:760px}
+.qa .bul{list-style:disc;padding-left:20px}
 .qa dt{font-family:var(--font-display);font-weight:700;font-size:18px;line-height:1.35}
 
 @media (max-width:619px){

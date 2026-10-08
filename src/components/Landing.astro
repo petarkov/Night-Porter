@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Logo from './Logo.astro';
-import { VARIANTS, CHIPS, DONT_DO, DATA_POINTS, type VariantKey } from '../data/variants';
+import { VARIANTS, CHIPS, DONT_DO, DATA_POINTS, FOUNDERS, type VariantKey } from '../data/variants';
 import { rich } from '../lib/rich';
 import site from '../../site.config.mjs';
 
@@ -174,7 +174,7 @@ const faqSchema = {
 
           <div id="bk-cal" class="bk-cal" hidden>
             <div id="bk-cal-embed" class="bk-cal-embed"></div>
-            <p class="body muted">No time that works? Email <span class="ph">[contact email]</span>.</p>
+            <p class="body muted">No time that works? Email <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.</p>
           </div>
 
           <div id="bk-done" class="bk-done" role="status" hidden>
@@ -199,8 +199,9 @@ const faqSchema = {
         <h2 class="h2">Who we are</h2>
         <p class="body about-sub">Two founders. One of us is on every call.</p>
         <div class="founders">
-          <div><span class="ph">[Founder 1, commercial: name, one line]</span></div>
-          <div><span class="ph">[Founder 2, technical: name, one line]</span></div>
+          {FOUNDERS.map(([name, line]) => (
+            <div><strong>{name}</strong>, {line}</div>
+          ))}
         </div>
       </div>
     </section>

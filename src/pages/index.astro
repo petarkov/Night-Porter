@@ -25,17 +25,23 @@ const org = {
 >
   <main class="wrap root">
     <h1 class="display root-h1">We run the work between your systems.</h1>
-    <p class="body">One repeatable job, taken off your team, with a person approving anything that leaves.</p>
-    <div class="seg">
-      {cards.map((c) => (
-        <a class="seg-card" href={c.href}>
-          <span class="label">{c.label}</span>
-          <span class="seg-row">
-            <span class="seg-t">{c.text}</span>
-            <Fragment set:html={arrow} />
-          </span>
-        </a>
-      ))}
+    <div class="root-sub">
+      <p class="body">One repeatable job, taken off your team, with a person approving anything that leaves.</p>
+      <p class="body small">We draft overnight from your own files and templates. Your team reviews in the morning, and nothing leaves until a person says yes.</p>
+    </div>
+    <div>
+      <p class="label">Pick your work</p>
+      <div class="seg">
+        {cards.map((c) => (
+          <a class="seg-card" href={c.href}>
+            <span class="label">{c.label}</span>
+            <span class="seg-row">
+              <span class="seg-t">{c.text}</span>
+              <Fragment set:html={arrow} />
+            </span>
+          </a>
+        ))}
+      </div>
     </div>
     <p><a href="/data/">How we handle your data</a></p>
   </main>

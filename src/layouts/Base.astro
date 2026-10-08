@@ -1,6 +1,7 @@
 ---
 import '../styles/site.css';
 import Logo from '../components/Logo.astro';
+import site from '../../site.config.mjs';
 
 interface Props {
   title: string;
@@ -73,7 +74,7 @@ const ogImage = new URL('/nightporter-og-image.png', Astro.site).href;
         <span>© 2026 Night Porter</span>
         <a href="/privacy/">Privacy</a>
         <a href="/data/">Data</a>
-        <span class="ph">[contact email]</span>
+        <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
       </div>
     </footer>
     <slot name="end" />
