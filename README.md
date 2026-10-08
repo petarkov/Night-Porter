@@ -51,6 +51,6 @@ One-time setup in the Cloudflare dashboard:
 - Booking position: kept as built (checks in four columns, booking at about 57% of page height at 1440px). Decided, not a defect.
 - Cal.com link: intentionally empty for now. After a valid submit, visitors see only the email fallback line.
 - Word count: both variants are over the 650 target. Copy is not cut without sign-off.
-- Unconfirmed values, still in `[[double brackets]]`: the support hours in the coverage line (/staffing, /proposals) and the AI provider, retention days, hosting, region, encryption, workspace and retention windows on /data. Before deploying, check that `dist/` has no `[[`.
+- No unconfirmed values left. If one is added later in `[[double brackets]]`, check that `dist/` has no `[[` before deploying.
 - The footer reads `© 2026 Night Porter` until a legal entity exists.
 - Logo files: `design-system/assets/` holds the supplied Night Porter SVGs and wordmark PNGs. `src/components/Logo.astro` inlines an SVGO-optimized copy of `nightporter-wordmark-paper.svg`.

@@ -79,7 +79,7 @@ export const DONT_DO = [
   'Write to your systems outside the fields we agree.',
   'Promise perfect accuracy. We publish the measured rate.',
   'Automate every department. One job first.',
-  'Offer 24/7 support. The work runs overnight; we answer weekdays, [[9 a.m. to 6 p.m. ET]]. Anything that breaks outside those hours falls back to your manual process until morning.',
+  'Offer 24/7 support. The work runs overnight; we answer weekdays, 9 a.m. to 6 p.m. ET. Anything that breaks outside those hours falls back to your manual process until morning.',
 ];
 
 export const DATA_POINTS = [
@@ -188,15 +188,15 @@ export const VARIANTS: Record<VariantKey, Variant> = {
 
 /** [question, answer, optional link: when set, the whole answer is that link] */
 export const DATA_QA: [q: string, a: string, href?: string][] = [
-  ['What do you read?', 'Only the systems named in your statement of work, such as [[your ATS, document storage, shared inbox]]. Access is scoped to the folders and records the job needs.'],
+  ['What do you read?', 'Only the systems named in your statement of work, such as your ATS, document storage, shared inbox. Access is scoped to the folders and records the job needs.'],
   ['What do you write?', 'Only items a person on your team has approved, and only to fields named in the statement of work.'],
   ['Whose credentials?', 'Scoped to the workflow, held in your accounts wherever the vendor allows, and revocable by you without contacting us.'],
-  ['Do AI providers train on our data?', 'We use [[provider]] under commercial terms that do not use your inputs or outputs to train models. They retain data for [[X days]] for abuse monitoring, then delete it.'],
-  ['Where is data hosted?', '[[Hosting provider]], [[region]]. Your data stays in the US unless your statement of work says otherwise.'],
-  ['Is it encrypted?', 'Yes. [[TLS 1.2 or higher]] in transit and [[AES-256]] at rest.'],
+  ['Do AI providers train on our data?', 'We use AI providers under commercial terms that do not use your inputs or outputs to train models, and their retention terms are named in your statement of work.'],
+  ['Where is data hosted?', 'Hosted in the US. Your data stays in the US unless your statement of work says otherwise.'],
+  ['Is it encrypted?', 'Yes. TLS 1.2 or higher in transit and AES-256 at rest.'],
   ['Is there an audit log?', "Every read, draft, flag and approval is logged with a timestamp and who or what did it. You can request your firm's log at any time."],
-  ['Is our data separate from other clients?', "Yes. Each client runs in its own [[workspace / storage]] with its own credentials. One client's files are never used to draft for another."],
-  ['How long do you keep it?', 'Working files for [[30]] days after each job closes. When an engagement ends, we delete everything within [[30]] days and confirm it in writing.'],
+  ['Is our data separate from other clients?', "Yes. Each client runs in its own workspace / storage with its own credentials. One client's files are never used to draft for another."],
+  ['How long do you keep it?', 'Working files for 30 days after each job closes. When an engagement ends, we delete everything within 30 days and confirm it in writing.'],
   ['Where is your team?', 'Our team works from the US and Europe. Where your data is accessed outside the US, that access is covered by our data-processing terms.'],
   ['Do you hold certifications?', "Not yet. We don't hold SOC 2 or ISO 27001. We'll send our written security practice on request."],
   ['Data-processing terms:', 'Request our DPA', `mailto:${site.securityEmail}?subject=DPA%20request`],
