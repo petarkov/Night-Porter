@@ -68,8 +68,6 @@ a:hover{text-decoration-thickness:2px}
 .hdr-links a:hover{text-decoration:underline}
 .hdr-cta{min-width:112px;display:flex;justify-content:flex-end}
 /* With JS the CTA starts hidden; the observer shows it once neither the hero button nor #book is on screen. */
-.js .hdr-cta{visibility:hidden}
-.js .hdr-cta.on{visibility:visible}
 
 /* Sections */
 .sec{padding:24px 0;border-top:var(--hairline);scroll-margin-top:72px}

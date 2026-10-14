@@ -8,12 +8,10 @@ interface Props {
   description: string;
   /** Wordmark in the simple header links home (true) or is plain (false, root page). */
   homeLink?: boolean;
-  /** Landing pages only: marks <html> so the header CTA can start hidden without a flash. */
-  js?: boolean;
   /** JSON-LD objects for this page. */
   schema?: object[];
 }
-const { title, description, homeLink = true, js = false, schema = [] } = Astro.props;
+const { title, description, homeLink = true, schema = [] } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/nightporter-og-image.png', Astro.site).href;
 ---
@@ -45,7 +43,6 @@ const ogImage = new URL('/nightporter-og-image.png', Astro.site).href;
     {schema.map((o) => <script type="application/ld+json" set:html={JSON.stringify(o)} />)}
     <link rel="preload" href="/fonts/archivo-700-800.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/plex-sans-400-600.woff2" as="font" type="font/woff2" crossorigin />
-    {js && <script is:inline>document.documentElement.classList.add('js')</script>}
   </head>
   <body>
     {
