@@ -6,12 +6,10 @@ import site from '../../site.config.mjs';
 interface Props {
   title: string;
   description: string;
-  /** Wordmark in the simple header links home (true) or is plain (false, root page). */
-  homeLink?: boolean;
   /** JSON-LD objects for this page. */
   schema?: object[];
 }
-const { title, description, homeLink = true, schema = [] } = Astro.props;
+const { title, description, schema = [] } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/nightporter-og-image.png', Astro.site).href;
 ---
@@ -51,15 +49,9 @@ const ogImage = new URL('/nightporter-og-image.png', Astro.site).href;
       ) : (
         <header class="hdr">
           <div class="wrap hdr-in">
-            {homeLink ? (
-              <a href="/" class="hdr-logo" aria-label="Night Porter home">
-                <Logo width={132} first />
-              </a>
-            ) : (
-              <span class="hdr-logo">
-                <Logo width={132} first label="Night Porter" />
-              </span>
-            )}
+            <a href="/" class="hdr-logo" aria-label="Night Porter home">
+              <Logo width={132} first />
+            </a>
           </div>
         </header>
       )
@@ -67,7 +59,7 @@ const ogImage = new URL('/nightporter-og-image.png', Astro.site).href;
     <slot />
     <footer class="ftr">
       <div class="wrap ftr-in">
-        <Logo width={114} label="Night Porter" />
+        <a href="/" class="hdr-logo" aria-label="Night Porter home"><Logo width={114} /></a>
         <span>© 2026 Night Porter</span>
         <a href="/privacy/">Privacy</a>
         <a href="/data/">Data</a>
