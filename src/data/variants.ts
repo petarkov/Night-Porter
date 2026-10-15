@@ -54,7 +54,7 @@ const COST_FAQ = {
 
 export const FOUNDERS: [name: string, line: string][] = [
   ['Petar Kovacevic', 'commercial. Runs your assessment and stays your contact from the first call to the monthly report.'],
-  ['Leonardo Djinic', 'technical. Builds and tests every workflow, and is the person your IT team talks to.'],
+  ['Aleks Djinic', 'technical. Builds and tests every workflow, and is the person your IT team talks to.'],
 ];
 
 const STEPS = (word: string) => [
