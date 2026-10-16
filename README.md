@@ -18,7 +18,7 @@ npm run build     # static output in dist/
 npm run preview   # serve dist/ locally
 ```
 
-Node 22 or newer. `/api/lead` only exists on Cloudflare; locally the form still moves to the scheduler step when the post fails.
+Node 22.22 or newer. `/api/lead` only runs on Cloudflare or under `npx wrangler dev`; locally the form still moves to the scheduler step when the post fails.
 
 ## Where things live
 
@@ -29,22 +29,27 @@ Node 22 or newer. `/api/lead` only exists on Cloudflare; locally the form still 
 - `src/layouts/Base.astro`: head, simple header, footer.
 - `src/styles/site.css`: the only stylesheet, built from `design-system/tokens/`. Inlined into each page at build.
 - `src/lib/rich.ts`: wraps numbers in IBM Plex Mono and renders `[placeholders]` and `[[unconfirmed values]]` as placeholder tags, at build time.
-- `functions/api/lead.js`: Cloudflare Pages Function that receives the booking form.
+- `worker/index.js`, `worker/lead.js`: the Worker. `/api/lead` receives the booking form; every other path is served from `dist/`.
+- `wrangler.jsonc`: Cloudflare deploy config (build command, assets, 404 page).
 - `scripts/build-fonts.sh`: regenerates `public/fonts/` from `design-system/fonts/` (needs `pip install fonttools brotli`). Archivo and Plex Sans are variable fonts clamped to the weights used, subset to Latin.
 
-## Deploy (Cloudflare Pages)
+## Deploy (Cloudflare Workers)
 
-One-time setup in the Cloudflare dashboard:
+The site deploys as the `night-porter` Worker: static files from `dist/` plus a small script for `/api/lead`. `wrangler.jsonc` holds the whole setup, including the build command, so Cloudflare only needs:
 
-1. Workers & Pages > Create > Pages > Connect to Git, pick this repo and the production branch.
-2. Build command `npm run build`, output directory `dist`. Set `NODE_VERSION=22.16.0` under environment variables (Astro needs 22.12 or newer; `.nvmrc` pins the same).
-3. Every push to the production branch deploys; other branches get preview URLs.
-4. `siteUrl` in `site.config.mjs` is set to the planned domain `https://nightporterhq.com` (not bought yet). It is the only place the domain lives: canonical URLs, Open Graph, sitemap, robots and JSON-LD all read it.
+1. Workers & Pages > `night-porter` > Settings > Build: connected to this repo, production branch `main`, deploy command `npx wrangler deploy`.
+2. Build variable `NODE_VERSION=22.22.0` (or remove it so `.nvmrc` is used). Astro's dependencies want 22.19 or newer.
+3. Every push to `main` deploys.
+4. `siteUrl` in `site.config.mjs` is set to `https://nightporterhq.com`. It is the only place the domain lives: canonical URLs, Open Graph, sitemap, robots and JSON-LD all read it.
+
+Keep `wrangler.jsonc` in the repo. Without it, `wrangler deploy` auto-configures the project, runs `astro add cloudflare` and pulls in an Astro that fails on the pinned Node.
+
+Check a deploy locally: `npm run build && npx wrangler dev` serves the site and `/api/lead` at http://localhost:8787.
 
 ### Booking form
 
-- **Leads:** set `LEAD_WEBHOOK_URL` as an encrypted variable (Settings > Variables and secrets) and each lead is POSTed there as JSON (`name, email, company, size, variant, receivedAt`). Until then leads only go to the function log (Workers & Pages > project > Functions > Real-time logs). No keys in the repo.
-- **Scheduler:** set `calLink` in `site.config.mjs` (e.g. `your-name/20min`). The Cal.com embed loads only after a valid submit, with name and email prefilled. With JS off the form posts to the function, which redirects to the Cal.com page.
+- **Leads:** set `LEAD_WEBHOOK_URL` as an encrypted variable (Settings > Variables and secrets) and each lead is POSTed there as JSON (`name, email, company, size, variant, receivedAt`). Until then leads only go to the Worker log (Workers & Pages > night-porter > Logs). No keys in the repo.
+- **Scheduler:** set `calLink` in `site.config.mjs` (e.g. `your-name/20min`). The Cal.com embed loads only after a valid submit, with name and email prefilled. With JS off the form posts to the Worker, which redirects to the Cal.com page.
 
 ## Open items
 
