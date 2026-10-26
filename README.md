@@ -50,11 +50,11 @@ Check a deploy locally: `npm run build && npx wrangler dev` serves the site and 
 
 - **Leads:** set `LEAD_WEBHOOK_URL` as an encrypted variable (Settings > Variables and secrets) and each lead is POSTed there as JSON (`name, email, company, size, variant, receivedAt`). Until then leads only go to the Worker log (Workers & Pages > night-porter > Logs). No keys in the repo.
 - **Scheduler:** set `calLink` in `site.config.mjs` (e.g. `your-name/20min`). The Cal.com embed loads only after a valid submit, with name and email prefilled. With JS off the form posts to the Worker, which redirects to the Cal.com page.
+- **Email alerts:** set `RESEND_API_KEY` (secret, from resend.com) and `LEAD_NOTIFY_TO` (comma-separated addresses) and every submission is emailed at once, before the visitor books. Cal.com emails separately on booking, so an alert with no matching booking is a lead who left at the scheduler. Optional `LEAD_NOTIFY_FROM`; without a verified domain, Resend only delivers to the address on the Resend account.
 
 ## Open items
 
 - Booking position: kept as built (checks in four columns, booking at about 57% of page height at 1440px). Decided, not a defect.
-- Cal.com link: intentionally empty for now. After a valid submit, visitors see only the email fallback line.
 - Word count: both variants are over the 650 target. Copy is not cut without sign-off.
 - No unconfirmed values left. If one is added later in `[[double brackets]]`, check that `dist/` has no `[[` before deploying.
 - The footer reads `© 2026 Night Porter` until a legal entity exists.
