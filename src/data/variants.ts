@@ -26,6 +26,8 @@ export interface Variant {
   dontDo: string;
   formQ: string;
   formOpts: string[];
+  /** Shown under the size question: where we usually fit, so smaller firms self-select out politely. */
+  formHint: string;
   faq: { q: string; a: string }[];
   steps: { name: string; dur: string; line: string; chips?: boolean }[];
   checks: [check: string, line: string][];
@@ -64,7 +66,7 @@ const STEPS = (word: string) => [
 ];
 
 const CHECKS = (word: string): [string, string][] => [
-  ['Accuracy', `Tested on 30 past ${word}. Zero serious errors on the test set.`],
+  ['Accuracy', `Before we hand over, the workflow is tested on 30 of your past ${word}. It passes only with zero serious errors on that test set.`],
   ['Ownership', 'A named person on your side owns each exception.'],
   ['Failure', 'Breaks show, and a manual fallback keeps work moving.'],
   ['Cost', 'Cost per accepted output, your review time included.'],
@@ -79,7 +81,7 @@ export const DONT_DO = [
   'Write to your systems outside the fields we agree.',
   'Promise perfect accuracy. We publish the measured rate.',
   'Automate every department. One job first.',
-  'Offer 24/7 support. The work runs overnight; we answer weekdays, 9 a.m. to 6 p.m. ET. Anything that breaks outside those hours falls back to your manual process until morning.',
+  'Offer 24/7 support. Support runs weekdays, 9 a.m. to 6 p.m. ET. Work outside those hours falls back to your manual process until morning.',
 ];
 
 export const DATA_POINTS = [
@@ -107,6 +109,7 @@ export const VARIANTS: Record<VariantKey, Variant> = {
     dontDo: 'Screen, rank or reject candidates. Your recruiters decide.',
     formQ: 'How many recruiters on your team?',
     formOpts: ['Under 10', '10 to 20', '20 to 50', 'More than 50'],
+    formHint: "We're usually the right fit from about 20 recruiters.",
     faq: [
       WHAT_WE_DO(
         "Night Porter takes submission prep off your recruiters. We pull the req, CV, notes and transcripts together into a package in your client's format. Every fact carries its source, and a recruiter approves it before it goes out.",
@@ -138,7 +141,7 @@ export const VARIANTS: Record<VariantKey, Variant> = {
   },
   proposals: {
     title: 'Night Porter | Proposal Prep for Engineering and Consulting',
-    desc: 'We take first drafts off your team: RFP to proposal draft built from your past proposals, resumes and project sheets, with every claim sourced.',
+    desc: 'We take first drafts off your team: RFP or RFQ to proposal draft built from your past proposals, resumes and project sheets, with every claim sourced.',
     eyebrow: 'For US consulting and engineering firms',
     h1: "First proposal drafts, off your team's desks.",
     subline: 'We draft from your past proposals, resumes and project sheets, and flag every gap. We never submit anything.',
@@ -153,6 +156,7 @@ export const VARIANTS: Record<VariantKey, Variant> = {
     dontDo: 'Pick bids, set fees or submit proposals. Your principals decide.',
     formQ: 'How many proposals do you send a month?',
     formOpts: ['Under 5', '5 to 10', '10 to 20', 'More than 20'],
+    formHint: "We're usually the right fit from about 10 proposals a month.",
     faq: [
       WHAT_WE_DO(
         'Night Porter takes first proposal drafts off your team. We read the RFP, match your past projects and resumes to each requirement, and draft in your house format. Every claim carries its source, and we never submit anything.',

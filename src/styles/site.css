@@ -87,7 +87,7 @@ a:hover{text-decoration-thickness:2px}
 .card-fig{display:flex;flex-direction:column;gap:12px}
 .card{background:var(--panel);border:var(--hairline);border-radius:var(--r-doc);padding:20px}
 .card-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
-.card-top .label{white-space:nowrap}
+.card-top .synth{white-space:nowrap;font-family:var(--font-mono);font-size:12px;line-height:1.4;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);padding:2px 8px;border:1px solid var(--ink-3);border-radius:var(--r)}
 .card-title{font-family:var(--font-display);font-weight:700;font-size:18px;line-height:1.3;margin:14px 0;text-wrap:pretty}
 .card-title .n{font-weight:500;font-size:16px}
 .card-row{display:grid;grid-template-columns:140px minmax(0,1fr) auto;gap:4px 16px;padding:11px 0;border-top:var(--hairline);align-items:baseline}
@@ -174,6 +174,9 @@ a:hover{text-decoration-thickness:2px}
 /* Short desktop screens: let the root H1 run to two lines so the footer stays in view. */
 @media (min-width:620px) and (max-height:820px){.root-h1{max-width:24ch}.root{padding-top:clamp(24px,6vh,96px);padding-bottom:clamp(20px,4vh,56px);gap:clamp(16px,2.5vh,32px)}}
 .seg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:16px;margin-top:8px}
+.seg-item{display:flex;flex-direction:column;gap:10px}
+.seg-item .seg-card{flex:1}
+.seg-book{align-self:flex-start;padding:4px 0}
 .seg-card{display:flex;flex-direction:column;gap:10px;padding:24px;background:var(--panel);border:var(--hairline);border-radius:var(--r-doc);color:var(--ink);text-decoration:none;transition:border-color 120ms ease}
 .seg-card:hover{border-color:var(--ink-3)}
 .seg-row{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}

@@ -42,7 +42,7 @@ const faqSchema = {
         <figure class="card-fig">
           <div class="card">
             <div class="card-top">
-              <span class="label">Example · synthetic data</span>
+              <span class="synth">Example · synthetic data</span>
               <span class="data muted">{v.card.drafted}</span>
             </div>
             <p class="card-title" set:html={rich(v.card.title)} />
@@ -163,10 +163,11 @@ const faqSchema = {
             </div>
             <div class="field">
               <label for="bk-q">{v.formQ}</label>
-              <select id="bk-q" name="size" required aria-describedby="bk-q-e">
+              <select id="bk-q" name="size" required aria-describedby="bk-q-h bk-q-e">
                 <option value="">Choose one</option>
                 {v.formOpts.map((o) => <option>{o}</option>)}
               </select>
+              <span class="small muted" id="bk-q-h">{v.formHint}</span>
               <span class="err" id="bk-q-e"></span>
             </div>
             <div><button class="btn" type="submit">Pick a time</button></div>
