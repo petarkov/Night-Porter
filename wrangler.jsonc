@@ -9,6 +9,9 @@
   "preview_urls": true,
   "previews": {},
   "build": { "command": "npm run build" },
+  // TODO(Petar): create the KV namespace (npx wrangler kv namespace create LEADS, or the dashboard) and replace
+  // this placeholder with its id. Deploys fail until it is a real namespace id.
+  "kv_namespaces": [{ "binding": "LEADS", "id": "TODO_REPLACE_WITH_LEADS_NAMESPACE_ID" }],
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
