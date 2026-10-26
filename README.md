@@ -48,9 +48,9 @@ Check a deploy locally: `npm run build && npx wrangler dev` serves the site and 
 
 ### Booking form
 
-- **Leads:** set `LEAD_WEBHOOK_URL` as an encrypted variable (Settings > Variables and secrets) and each lead is POSTed there as JSON (`name, email, company, size, variant, receivedAt`). Until then leads only go to the Worker log (Workers & Pages > night-porter > Logs). No keys in the repo.
+- **Leads:** every lead is stored in the `LEADS` KV namespace (key `lead:<ISO time>:<random>`, value JSON with `name, email, company, size, variant, received_at, user_agent, country`). Optional: set `LEAD_WEBHOOK_URL` as an encrypted variable and each lead is also POSTed there as the same JSON. `/api/lead` returns `{ok:true}` only if the lead was stored, emailed or accepted by the webhook; otherwise 503 and the page shows the email fallback line above the scheduler. Posts from other sites get 403, and a filled honeypot field is answered with success but kept nowhere. No keys in the repo.
 - **Scheduler:** set `calLink` in `site.config.mjs` (e.g. `your-name/20min`). The Cal.com embed loads only after a valid submit, with name and email prefilled. With JS off the form posts to the Worker, which redirects to the Cal.com page.
-- **Email alerts:** set `RESEND_API_KEY` (secret, from resend.com) and `LEAD_NOTIFY_TO` (comma-separated addresses) and every submission is emailed at once, before the visitor books. Cal.com emails separately on booking, so an alert with no matching booking is a lead who left at the scheduler. Optional `LEAD_NOTIFY_FROM`; without a verified domain, Resend only delivers to the address on the Resend account.
+- **Email alerts:** set `RESEND_API_KEY` (secret, from resend.com) and `LEAD_NOTIFY_TO` (comma-separated addresses) and every submission is emailed at once, before the visitor books. Cal.com emails separately on booking, so an alert with no matching booking is a lead who left at the scheduler. Optional `LEAD_FROM` (sender, default `Night Porter Leads <leads@notify.nightporterhq.com>`, which needs `notify.nightporterhq.com` verified in Resend).
 
 ## Open items
 

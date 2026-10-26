@@ -9,6 +9,8 @@
   "preview_urls": true,
   "previews": {},
   "build": { "command": "npm run build" },
+  // Every booking-form lead is stored here (KV namespace "LEADS"). Previews get no LEADS binding.
+  "kv_namespaces": [{ "binding": "LEADS", "id": "370171cda418461cb7625f2c0641fcf6" }],
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
