@@ -28,6 +28,8 @@ export interface Variant {
   formOpts: string[];
   /** Shown under the size question: where we usually fit, so smaller firms self-select out politely. */
   formHint: string;
+  /** Shown in the booked state, after the calendar-invite line. */
+  prepLine: string;
   faq: { q: string; a: string }[];
   steps: { name: string; dur: string; line: string; chips?: boolean }[];
   checks: [check: string, line: string][];
@@ -110,6 +112,7 @@ export const VARIANTS: Record<VariantKey, Variant> = {
     formQ: 'How many recruiters on your team?',
     formOpts: ['Under 10', '10 to 20', '20 to 50', 'More than 50'],
     formHint: "We're usually the right fit from about 20 recruiters.",
+    prepLine: "It's a short conversation, no prep needed. If you have a rough count of candidate submittals per month, bring it.",
     faq: [
       WHAT_WE_DO(
         "Night Porter takes submission prep off your recruiters. We pull the req, CV, notes and transcripts together into a package in your client's format. Every fact carries its source, and a recruiter approves it before it goes out.",
@@ -157,6 +160,7 @@ export const VARIANTS: Record<VariantKey, Variant> = {
     formQ: 'How many proposals do you send a month?',
     formOpts: ['Under 5', '5 to 10', '10 to 20', 'More than 20'],
     formHint: "We're usually the right fit from about 10 proposals a month.",
+    prepLine: "It's a short conversation, no prep needed. If you have a rough count of proposals per month, bring it.",
     faq: [
       WHAT_WE_DO(
         'Night Porter takes first proposal drafts off your team. We read the RFP, match your past projects and resumes to each requirement, and draft in your house format. Every claim carries its source, and we never submit anything.',
