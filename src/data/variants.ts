@@ -24,6 +24,10 @@ export interface Variant {
   tiles: [verb: string, text: string][];
   tile5: string;
   dontDo: string;
+  /** Free-sample offer shown near the top of the page. */
+  sample: string;
+  /** One-line link to the other landing page: [href, text]. */
+  crossLink: [href: string, text: string];
   formQ: string;
   formOpts: string[];
   /** Shown under the size question: where we usually fit, so smaller firms self-select out politely. */
@@ -53,7 +57,7 @@ const WRONG_FAQ = {
 
 const COST_FAQ = {
   q: 'What does it cost?',
-  a: "Each step has a fixed fee, agreed in writing before it starts. The assessment tells you whether the pilot pays back. If it doesn't, we'll tell you not to buy it.",
+  a: "We quote after the assessment, once we've measured how the work runs today. Each step has a fixed fee, agreed in writing before it starts. If the pilot won't pay back, we'll tell you not to buy it.",
 };
 
 export const FOUNDERS: [name: string, line: string][] = [
@@ -109,6 +113,8 @@ export const VARIANTS: Record<VariantKey, Variant> = {
     ],
     tile5: 'Nothing reaches your client until a recruiter says yes.',
     dontDo: 'Screen, rank or reject candidates. Your recruiters decide.',
+    sample: "Want to see it first? We'll build a free sample submittal package from one of your public job reqs, delivered within 3 business days after you say yes.",
+    crossLink: ['/proposals/', 'Engineering or consulting firm? See how we draft first proposals.'],
     formQ: 'How many recruiters on your team?',
     formOpts: ['Under 10', '10 to 20', '20 to 50', 'More than 50'],
     formHint: "We're usually the right fit from about 20 recruiters.",
@@ -157,6 +163,8 @@ export const VARIANTS: Record<VariantKey, Variant> = {
     ],
     tile5: 'Your team edits and signs off. We never submit.',
     dontDo: 'Pick bids, set fees or submit proposals. Your principals decide.',
+    sample: "Want to see it first? We'll build a free response outline for one of your open RFQs, delivered within 3 business days after you say yes.",
+    crossLink: ['/staffing/', 'Staffing firm? See how we take submission prep off your recruiters.'],
     formQ: 'How many proposals do you send a month?',
     formOpts: ['Under 5', '5 to 10', '10 to 20', 'More than 20'],
     formHint: "We're usually the right fit from about 10 proposals a month.",

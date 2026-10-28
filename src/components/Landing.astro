@@ -35,8 +35,10 @@ const faqSchema = {
           <p class="eyebrow">{v.eyebrow}</p>
           <h1 class="display">{v.h1}</h1>
           <p class="body">{v.subline}</p>
+          <p class="body">Drafts are ready when your team logs in.</p>
           <div class="hero-cta" id="hero-cta"><a class="btn" href="#book"><span>Book a <span class="n">15</span>-minute call</span></a></div>
           <p class="body muted">No slides. We'll tell you honestly if we can help.</p>
+          <p class="body" set:html={rich(v.sample)} />
         </div>
 
         <figure class="card-fig">
@@ -85,6 +87,7 @@ const faqSchema = {
             <span class="tile-t">{v.tile5}</span>
           </li>
         </ol>
+        <p class="more"><a href={v.crossLink[0]}>{v.crossLink[1]}</a></p>
       </div>
     </section>
 
