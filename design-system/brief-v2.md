@@ -198,7 +198,7 @@ Two founders. One of us is on every call.
 
 &#91;Plus the two variant questions\]
 
-**What does it cost?** (last question) We quote after the assessment, once we've measured how the work runs today. Each step has a fixed fee, agreed in writing before it starts. If the pilot won't pay back, we'll tell you not to buy it.
+**What does it cost?** (last question) The assessment is a fixed-fee first step; we quote the pilot after it. Each step's fee is agreed in writing before it starts. If the pilot won't pay back, we'll tell you not to buy it.
 
 **Footer:** \[wordmark\] · \[Legal entity name\] · Privacy · Data · \[contact email\]
 

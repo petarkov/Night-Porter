@@ -57,7 +57,7 @@ const WRONG_FAQ = {
 
 const COST_FAQ = {
   q: 'What does it cost?',
-  a: "We quote after the assessment, once we've measured how the work runs today. Each step has a fixed fee, agreed in writing before it starts. If the pilot won't pay back, we'll tell you not to buy it.",
+  a: "The assessment is a fixed-fee first step; we quote the pilot after it. Each step's fee is agreed in writing before it starts. If the pilot won't pay back, we'll tell you not to buy it.",
 };
 
 export const FOUNDERS: [name: string, line: string][] = [
