@@ -115,9 +115,15 @@ Use these words exactly. `{WORD}` means **submissions** on /staffing and **propo
 
 **Header:** The work · Your data · About · \[Book a call\]
 
+**Under the subline (overnight line):** Drafts are ready when your team logs in.
+
 **Hero button:** Book a 20-minute call
 
 **Under the button:** No slides. We'll tell you honestly if we can help.
+
+**Free-sample line (under the line above):** \[VARIANT SAMPLE LINE\]
+
+**Section 2, cross-link (one line under the tiles):** \[VARIANT CROSS-LINK\]
 
 **Section 3, H2:** Three steps. Stop after any of them.
 
@@ -192,6 +198,8 @@ Two founders. One of us is on every call.
 
 &#91;Plus the two variant questions\]
 
+**What does it cost?** (last question) We quote after the assessment, once we've measured how the work runs today. Each step has a fixed fee, agreed in writing before it starts. If the pilot won't pay back, we'll tell you not to buy it.
+
 **Footer:** \[wordmark\] · \[Legal entity name\] · Privacy · Data · \[contact email\]
 
 ### /staffing
@@ -208,6 +216,8 @@ Two founders. One of us is on every call.
   3. **Draft.** The package in your client's template.
   4. **Flag.** Conflicting sources go to the recruiter.
   5. **Approve.** Nothing reaches your client until a recruiter says yes.
+- **Free-sample line:** Want to see it first? We'll build a free sample submittal package from one of your public job reqs, delivered within 3 business days after you say yes.
+- **Cross-link:** Engineering or consulting firm? See how we draft first proposals. → /proposals
 - **Don't-do line:** Screen, rank or reject candidates. Your recruiters decide.
 - **Form question:** How many recruiters on your team? Under 10 / 10 to 20 / 20 to 50 / More than 50
 - **FAQ:**
@@ -228,6 +238,8 @@ Two founders. One of us is on every call.
   3. **Draft.** A first draft in your house format.
   4. **Flag.** Gaps and unmet criteria go to your proposal lead.
   5. **Approve.** Your team edits and signs off. We never submit.
+- **Free-sample line:** Want to see it first? We'll build a free response outline for one of your open RFQs, delivered within 3 business days after you say yes.
+- **Cross-link:** Staffing firm? See how we take submission prep off your recruiters. → /staffing
 - **Don't-do line:** Pick bids, set fees or submit proposals. Your principals decide.
 - **Form question:** How many proposals do you send a month? Under 5 / 5 to 10 / 10 to 20 / More than 20
 - **FAQ:**
@@ -242,6 +254,8 @@ Two founders. One of us is on every call.
 - **Line:** One repeatable job, taken off your team, with a person approving anything that leaves.
 - **Card 1:** STAFFING FIRMS · Submission prep: from approved req to client-ready package → /staffing
 - **Card 2:** CONSULTING AND ENGINEERING FIRMS · Proposal drafts: from RFP to first draft → /proposals
+- **Staffing paragraph (under the cards):** For US staffing firms: we take submission prep off your recruiters. We pull the req, CV, notes and transcripts into a package in your client's format. Every fact carries its source, and a recruiter approves it before anything goes out. Link: See submission prep → /staffing
+- **Proposals paragraph (under the cards):** For US engineering and consulting firms: we take first proposal drafts off your team. We read the RFP or RFQ, match your past projects and resumes to each requirement, and draft in your house format. Every claim carries its source, and we never submit anything. Link: See proposal drafts → /proposals
 - **Bottom link:** How we handle your data → /data
 
 ### Data page `/data`
