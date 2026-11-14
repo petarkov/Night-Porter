@@ -14,7 +14,7 @@ import site from '../../../site.config.mjs';
       <p class="label">{c.exA.label}</p>
       {c.exA.lines.map((l) => <p class="body">{l}</p>)}
       <p class="body strong">{c.exA.containsLabel}</p>
-      <ul class="rules narrow">{c.exA.contains.map((l) => <li set:html={rich(l)} />)}</ul>
+      <ul class="rules narrow">{c.exA.contains.map(([t, l]) => <li><strong>{t}</strong> {l}</li>)}</ul>
       <p class="small muted">{c.exA.footer}</p>
     </section>
 
@@ -26,8 +26,8 @@ import site from '../../../site.config.mjs';
       <p class="body">{c.exB.note}</p>
       {c.exB.sections.map(([h, items]) => (
         <div>
-          <p class="body strong">{h}</p>
-          <ul class="rules narrow">{items.map((l) => <li>{l}</li>)}</ul>
+          <p class="body strong" set:html={rich(h)} />
+          <ul class="rules narrow">{items.map((l) => <li set:html={rich(l)} />)}</ul>
         </div>
       ))}
       <p class="small muted">{c.exB.footer}</p>
@@ -35,7 +35,7 @@ import site from '../../../site.config.mjs';
 
     <section class="sec">
       <h2 class="h2">{c.yesH2}</h2>
-      <ul class="rules narrow">{c.yes.map((l) => <li>{l}</li>)}</ul>
+      <ul class="rules narrow">{c.yes.map((l) => <li set:html={rich(l)} />)}</ul>
     </section>
 
     <section class="sec" id="ask">
