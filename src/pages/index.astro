@@ -1,7 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { HOME } from '../data/copy';
-import { FOUNDERS } from '../data/variants';
+import { HOME, SAMPLE_CTA, REPLY_LINE } from '../data/copy';
 
 const arrow = '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
 const cards = [
@@ -51,19 +50,24 @@ const org = {
       <p class="body small">For US staffing firms: we take submission prep off your recruiters. We pull the req, CV, notes and transcripts into a package in your client's format. Every fact carries its source, and a recruiter approves it before anything goes out. <a href="/staffing/">See submission prep</a></p>
       <p class="body small">For US engineering and consulting firms: we take first proposal drafts off your team. We read the RFP or RFQ, match your past projects and resumes to each requirement, and draft in your house format. Every claim carries its source, and we never submit anything. <a href="/proposals/">See proposal drafts</a></p>
     </div>
-    <p class="body"><span>{HOME.sampleLine}</span> <a href="/sample/?from=home">{HOME.sampleLink}</a></p>
     <section class="sec">
-      <h2 class="h2">{HOME.finalSayH2}</h2>
-      <ul class="rules narrow">{HOME.finalSay.map((line) => <li>{line}</li>)}</ul>
+      <h2 class="h2">{HOME.sampleH2}</h2>
+      <p class="body">{HOME.sampleSub}</p>
+      <div class="hero-cta"><a class="btn" href="/sample/?from=home">{SAMPLE_CTA}</a></div>
+      <p class="small muted">{REPLY_LINE}</p>
     </section>
     <section class="sec">
-      <h2 class="h2">{HOME.foundersH2}</h2>
+      <h2 class="h2">{HOME.finalSayH2}</h2>
+      <p class="body">{HOME.finalSay}</p>
+    </section>
+    <section class="sec">
+      <h2 class="h2">Who we are</h2>
       <p class="body">{HOME.foundersNote}</p>
-      <div class="founders">{FOUNDERS.map(([name, line]) => <div><strong>{name}</strong>, {line}</div>)}</div>
     </section>
     {HOME.worksWith.length > 0 && (
       <section class="sec">
         <h2 class="h2">{HOME.worksWithH2}</h2>
+        <p class="body">{HOME.worksWithSub}</p>
         <ul class="chips">{HOME.worksWith.map((t) => <li>{t}</li>)}</ul>
       </section>
     )}

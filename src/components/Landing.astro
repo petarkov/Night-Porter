@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import Logo from './Logo.astro';
 import { VARIANTS, CHIPS, DONT_DO, DATA_POINTS, FOUNDERS, type VariantKey } from '../data/variants';
 import { rich } from '../lib/rich';
-import { SAMPLE_CTA, CALL_LINK } from '../data/copy';
+import { SAMPLE_CTA, REPLY_LINE, CALL_LINK } from '../data/copy';
 import site from '../../site.config.mjs';
 
 interface Props { variant: VariantKey }
@@ -37,10 +37,11 @@ const faqSchema = {
           <h1 class="display">{v.h1}</h1>
           <p class="body">{v.subline}</p>
           <p class="body">Drafts are ready when your team logs in.</p>
+          <p class="body" set:html={rich(v.sample)} />
           <div class="hero-cta" id="hero-cta"><a class="btn" href={`/sample/?from=${Astro.props.variant}`}><span>{SAMPLE_CTA}</span></a></div>
+          <p class="small muted">{REPLY_LINE}</p>
           <p class="small"><a href="#book">{CALL_LINK}</a></p>
           <p class="body muted">No slides. We'll tell you honestly if we can help.</p>
-          <p class="body" set:html={rich(v.sample)} />
         </div>
 
         <figure class="card-fig">
