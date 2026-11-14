@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import Logo from './Logo.astro';
 import { VARIANTS, CHIPS, DONT_DO, DATA_POINTS, FOUNDERS, type VariantKey } from '../data/variants';
 import { rich } from '../lib/rich';
-import { SAMPLE_CTA, REPLY_LINE, CALL_LINK } from '../data/copy';
+import { SAMPLE_CTA, HEADER_CTA, REPLY_LINE, CALL_LINK } from '../data/copy';
 import site from '../../site.config.mjs';
 
 interface Props { variant: VariantKey }
@@ -24,7 +24,7 @@ const faqSchema = {
           <a href="#data">Your data</a>
           <a href="#about">About</a>
         </div>
-        <div class="hdr-cta" id="hdr-cta"><a class="btn" href={`/sample/?from=${Astro.props.variant}`}>{SAMPLE_CTA}</a></div>
+        <div class="hdr-cta" id="hdr-cta"><a class="btn" href={`/sample/?from=${Astro.props.variant}`}>{HEADER_CTA}</a></div>
       </nav>
     </div>
   </header>

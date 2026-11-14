@@ -3,6 +3,7 @@
 
 /** Primary ask on both landing pages and the homepage. */
 export const SAMPLE_CTA = 'Ask for your free sample';
+export const HEADER_CTA = 'Free sample';
 /** Next to the primary button. */
 export const REPLY_LINE = 'or just reply to my email';
 /** Secondary link to the existing booking form (#book). */
