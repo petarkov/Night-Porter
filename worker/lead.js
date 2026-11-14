@@ -10,7 +10,10 @@
 import site from '../site.config.mjs';
 import { VARIANTS } from '../src/data/variants';
 
-const FIELDS = ['name', 'email', 'company', 'size', 'variant'];
+const FIELDS = ['name', 'email', 'company', 'size', 'variant', 'link', 'source'];
+// Free-sample requests from /sample/: a req or RFQ link instead of the size question.
+const SAMPLE = 'sample';
+const LINK = /^https?:\/\/[^\s.]+\.\S+$/i;
 const EMAIL = /^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i;
 const HONEYPOT = 'website';
 const DEFAULT_FROM = 'Night Porter Leads <leads@notify.nightporterhq.com>';
@@ -48,9 +51,18 @@ export async function handleLead(request, env) {
 
   const lead = Object.fromEntries(FIELDS.map((k) => [k, String(raw[k] ?? '').trim().slice(0, 200)]));
   if (!lead.variant) lead.variant = 'staffing';
+  const isSample = lead.variant === SAMPLE;
   const variant = Object.hasOwn(VARIANTS, lead.variant) ? VARIANTS[lead.variant] : null;
-  if (!lead.name || !lead.company || !EMAIL.test(lead.email) || !variant || !variant.formOpts.includes(lead.size)) {
+  if (raw.link != null) lead.link = String(raw.link).trim().slice(0, 500);
+  const answered = isSample ? LINK.test(lead.link) : variant && variant.formOpts.includes(lead.size);
+  if (!lead.name || !lead.company || !EMAIL.test(lead.email) || !answered) {
     return reply(isJson, 422, { ok: false });
+  }
+  // Booking leads keep exactly the fields they had before; sample requests drop the unused size.
+  if (isSample) delete lead.size;
+  else {
+    delete lead.link;
+    delete lead.source;
   }
 
   // Bots fill every field. Look like success, keep nothing.
@@ -77,6 +89,7 @@ function reply(isJson, status, body) {
 
 function success(isJson, lead, request) {
   if (isJson) return Response.json({ ok: true });
+  if (lead.variant === SAMPLE) return Response.redirect(new URL('/sample/?sent=1', request.url).href, 303);
   // No-JS fallback: go straight to the scheduler with name and email prefilled, or back to the form.
   const back = new URL(`/${lead.variant === 'proposals' ? 'proposals' : 'staffing'}/#book`, request.url);
   const to = site.calLink
@@ -109,7 +122,7 @@ async function notify(record, env) {
     ['Name', record.name],
     ['Email', record.email],
     ['Company', record.company],
-    ['Size', record.size],
+    ...(record.variant === SAMPLE ? [['Req or RFQ link', record.link], ['Came from', record.source || 'direct']] : [['Size', record.size]]),
     ['Page', record.variant],
     ['Country', record.country],
     ['Received', record.received_at],
@@ -122,10 +135,14 @@ async function notify(record, env) {
         from: env.LEAD_FROM || env.LEAD_NOTIFY_FROM || DEFAULT_FROM,
         to: env.LEAD_NOTIFY_TO.split(',').map((a) => a.trim()),
         reply_to: record.email,
-        subject: `New lead: ${record.name} (${record.company}), not booked yet`,
+        subject: record.variant === SAMPLE
+          ? `Sample request: ${record.name} (${record.company})`
+          : `New lead: ${record.name} (${record.company}), not booked yet`,
         text:
           rows.map(([k, v]) => `${k}: ${v}`).join('\n') +
-          '\n\nNo Cal.com booking email for this person soon means they left at the scheduler. Reply to follow up.',
+          (record.variant === SAMPLE
+            ? '\n\nFree sample requested. We promised delivery within 3 business days. Reply to follow up.'
+            : '\n\nNo Cal.com booking email for this person soon means they left at the scheduler. Reply to follow up.'),
       }),
     });
     if (!res.ok) console.error('Lead email failed', res.status, await res.text());
