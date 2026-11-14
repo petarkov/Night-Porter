@@ -1,0 +1,90 @@
+---
+import Base from '../../layouts/Base.astro';
+import { SAMPLE_PAGE as c } from '../../data/copy';
+import { rich } from '../../lib/rich';
+import site from '../../../site.config.mjs';
+---
+<Base title={c.title} description={c.desc}>
+  <main class="wrap dpage">
+    <h1 class="h1">{c.h1}</h1>
+    <p class="body">{c.intro}</p>
+
+    <section class="sec">
+      <h2 class="h2">{c.exA.h2}</h2>
+      <div class="root-sub">
+      <p class="label">{c.exA.label}</p>
+      {c.exA.lines.map((l) => <p class="body">{l}</p>)}
+      <p class="body strong">{c.exA.containsLabel}</p>
+      <ul class="rules narrow">{c.exA.contains.map(([t, l]) => <li><strong>{t}</strong> {l}</li>)}</ul>
+      <p class="small muted">{c.exA.footer}</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2 class="h2">{c.exB.h2}</h2>
+      <div class="root-sub">
+      <p class="label">{c.exB.label}</p>
+      <ul class="rules narrow">{c.exB.facts.map(([k, val]) => <li><strong>{k}:</strong> {val}</li>)}</ul>
+      <p class="body"><a href={c.exB.url} rel="noopener">{c.exB.urlText}</a></p>
+      <p class="body">{c.exB.note}</p>
+      {c.exB.sections.map(([h, items]) => (
+        <div>
+          <p class="body strong" set:html={rich(h)} />
+          <ul class="rules narrow">{items.map((l) => <li set:html={rich(l)} />)}</ul>
+        </div>
+      ))}
+      <p class="small muted">{c.exB.footer}</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2 class="h2">{c.yesH2}</h2>
+      <ul class="rules narrow">{c.yes.map((l) => <li set:html={rich(l)} />)}</ul>
+    </section>
+
+    <section class="sec" id="ask">
+      <h2 class="h2">{c.formH2}</h2>
+      <p class="body">{c.formIntro}</p>
+    <form id="sp" class="bk" action={site.leadEndpoint} method="post">
+      <input type="hidden" name="variant" value="sample" />
+      <input type="hidden" name="source" id="sp-source" value="" />
+      <div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden"><input name="website" tabindex="-1" autocomplete="off" /></div>
+      <div class="bk-row">
+        <div class="field">
+          <label for="sp-name">{c.nameLabel}</label>
+          <input id="sp-name" name="name" autocomplete="name" required aria-describedby="sp-name-e" />
+          <span class="err" id="sp-name-e"></span>
+        </div>
+        <div class="field">
+          <label for="sp-email">{c.emailLabel}</label>
+          <input id="sp-email" name="email" type="email" autocomplete="email" required aria-describedby="sp-email-h sp-email-e" />
+          <span class="small muted" id="sp-email-h">{c.emailHint}</span>
+          <span class="err" id="sp-email-e"></span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="sp-company">{c.companyLabel}</label>
+        <input id="sp-company" name="company" autocomplete="organization" required aria-describedby="sp-company-e" />
+        <span class="err" id="sp-company-e"></span>
+      </div>
+      <div class="field">
+        <label for="sp-link">{c.linkLabel}</label>
+        <input id="sp-link" name="link" type="url" inputmode="url" placeholder="https://" required aria-describedby="sp-link-h sp-link-e" />
+        <span class="small muted" id="sp-link-h">{c.linkHint}</span>
+        <span class="err" id="sp-link-e"></span>
+      </div>
+      <div><button class="btn" type="submit">{c.button}</button></div>
+    </form>
+      <p class="body muted">{c.altLine} <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.</p>
+
+    <p id="sp-ok" class="body" role="status" hidden></p>
+    <p id="sp-err" class="body" role="alert" hidden>We didn't get your details. Email <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a> and we'll follow up.</p>
+    </section>
+  </main>
+  <script
+    slot="end"
+    is:inline
+    data-thanks={c.thanks}
+    set:html={`(()=>{var d=document,$=i=>d.getElementById(i),f=$('sp'),me=d.currentScript.dataset;var s=new URLSearchParams(location.search);$('sp-source').value=(s.get('from')||'').slice(0,20);if(s.get('sent')=='1'){f.hidden=!0;$('sp-ok').textContent=me.thanks;$('sp-ok').hidden=!1;return}f.noValidate=!0;f.onsubmit=async e=>{e.preventDefault();var ok=1;for(var el of f.elements){if(!el.id||el.type=='hidden')continue;var v=el.value.trim(),m=!v?'Required.':el.type=='email'&&!/^[^@\\s]+@[^@\\s]+\\.[a-z]{2,}$/i.test(v)?'Enter a full email address.':el.type=='url'&&!/^https?:\\/\\/[^\\s.]+\\.[^\\s]+$/i.test(v)?'Paste a full link, starting with https://':'';$(el.id+'-e').textContent=m;el.setAttribute('aria-invalid',!!m);if(m&&ok){ok=0;el.focus()}}if(!ok)return;var b=Object.fromEntries(new FormData(f));var sent=0;try{sent=(await fetch(f.action,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)})).ok}catch(_){}f.hidden=!0;if(sent){$('sp-ok').textContent=me.thanks;$('sp-ok').hidden=!1}else $('sp-err').hidden=!1}})()`}
+  />
+</Base>
